@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Система розыгрыша призов</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png"
+        href="https://foni.papik.pro/uploads/posts/2024-09/foni-papik-pro-dme0-p-kartinki-kotik-na-prozrachnom-fone-5.png">
+</head>
+
+<script>
+
+    window.addEventListener('load', function () {
+        draw();
+    });
+</script>
+
+<body>
+
+    <!-- ПАНЕЛЬ -->
+    <div class="settings-panel" id="settingsPanel">
+        <button class="back-btn" onclick="closeSettings()">➝</button>
+        <h3>Настройки</h3>
+    
+        <!-- ИМПОРТ УЧАСТНИКОВ -->
+        <div class="settings-section">
+            <label> &nbsp; Импорт участников</label>
+            <input type="file" id="importFile" accept=".txt,.csv" style="display:none">
+            <button class="import-btn" onclick="document.getElementById('importFile').click()">
+                📁 Выбрать файл
+            </button>
+            <div class="import-preview" id="importPreview"></div>
+        </div>
+    
+        <!-- ЭКСПОРТ УЧАСТНИКОВ -->
+        <div class="settings-section">
+            <label> &nbsp;Экспорт данных</label>
+            <button class="export-btn" onclick="exportParticipantsToCSV()">
+                Экспорт участников (CSV)
+            </button>
+        </div>
+    
+        <div class="settings-bottom">
+            <button class="clear-btn danger" onclick="clearAllData()">
+                Удалить всё
+            </button>
+        </div>
+    </div>
+
+    <!-- ОСНОВНАЯ КАРТОЧКА -->
+    <div class="card" id="mainCard">
+
+        <button class="settings-btn" onclick="openSettings()">⚙</button>
+
+        <div class="title">
+            <span id="titleText" contenteditable="true">Колесо</span>
+            <svg class="edit" onclick="focusTitle()" viewBox="0 0 24 24">
+                <path d="M4 20h4l10-10a2 2 0 0 0-4-4L4 16v4z" />
+            </svg>
+        </div>
+
+        <div class="arrow">▼</div>
+
+        <div class="wheel-wrapper">
+            <canvas id="wheel" width="300" height="300"></canvas>
+        </div>
+
+        <button class="main-btn" onclick="spin()">Крутить</button>
+
+        <div class="input-row">
+            <input id="nameInput" placeholder="Добавить участника">
+            <button class="add-btn" onclick="addParticipant()">+</button>
+        </div>
+
+        <div class="list" id="list"></div>
+        <div class="winner" id="winner"></div>
+
+        <div class="author-btn" onclick="toggleAuthor()">🠗</div>
+
+        <div class="author-popup" id="authorPopup">
+            <div class="author-content">
+                <div><b>Создатель:</b> Аким Миловский</div>
+                <div>Telegram: @Osfun8</div>
+                <div>Email: osfun@bk.ru</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
